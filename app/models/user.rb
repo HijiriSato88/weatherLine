@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-    has_many :weathers
+    has_many :cities
 end

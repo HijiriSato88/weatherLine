@@ -12,5 +12,6 @@ module Myapp
     config.autoload_lib(ignore: %w(assets tasks))
     config.api_only = true
     config.paths.add 'lib', eager_load: true
+    
   end
 end
