@@ -32,6 +32,15 @@ gem "bootsnap", require: false
 #Line
 gem 'line-bot-api'
 
+#API_KEYを環境変数として管理する（Keyを外部流出させないための措置）
+gem 'dotenv-rails'
+#アプリケーション内でHTTPリクエストを投げたい場合に使うクラス
+gem 'httpclient'
+
+#csvインストール
+gem 'csv'
+
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

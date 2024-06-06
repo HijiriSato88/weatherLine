@@ -1,0 +1,2 @@
+class Weatherforecast < ApplicationRecord
+end
