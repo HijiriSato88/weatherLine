@@ -29,7 +29,7 @@ class LineBotController < ApplicationController
           line_uid = event['source']['userId']
           message = event.message['text']
           user = User.find_or_create_by(line_uid: line_uid)
-          weather = City.get_weather(message)
+          weather = Forecast.get_weather(message)
 
           if weather
             city = user.cities.find_or_create_by(city_name: message)
@@ -43,7 +43,7 @@ class LineBotController < ApplicationController
               date: weather[:date],
               aquired_at: Time.current
             )
-            response_message = City.format_weather_response(weather_forecast)
+            response_message = Forecast.format_weather_response(weather_forecast)
           else
             response_message = "天気情報を取得できませんでした。正しい場所を入力してください。\n
                                 例:Tokyo,Saitama,Kawagoe"
