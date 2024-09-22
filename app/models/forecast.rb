@@ -6,7 +6,7 @@ class Forecast < ApplicationRecord
     def self.get_weather(location)
       response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=#{location},jp&appid=#{API_KEY}&lang=ja")
       if response.success?
-        data = response.parsed_response
+        data = response.parsed_response #HTTPartyのparsed_responseは解析されたJSONを返す
         {
           temp_max: kelvin_to_celsius(data['main']['temp_max']).round(2),
           temp_min: kelvin_to_celsius(data['main']['temp_min']).round(2),

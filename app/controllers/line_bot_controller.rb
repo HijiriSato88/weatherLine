@@ -33,7 +33,7 @@ class LineBotController < ApplicationController
 
           if weather
             city = user.cities.find_or_create_by(city_name: message)
-            weather_forecast = city.forecasts.create(
+            weather_forecast = city.forecasts.create( #weather(Hash)から値を取り出し、DBに追加
               temp_max: weather[:temp_max],
               temp_min: weather[:temp_min],
               temp_feel: weather[:temp_feel],
