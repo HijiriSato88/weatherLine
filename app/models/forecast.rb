@@ -1,6 +1,20 @@
 class Forecast < ApplicationRecord
     belongs_to :city
 
+    validates :city_id, presence: true
+    
+    validates :temp_max, :temp_min, :temp_feel, presence: true, numericality: true
+    
+    validates :humidity, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+
+    validates :description, presence: true, length: { maximum: 255 }
+
+    validates :rainfall, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+    validates :date, presence: true
+    
+    validates :aquired_at, presence: true
+
     API_KEY = ENV['WEATHER_APIKEY']
   
     def self.get_weather(location)
