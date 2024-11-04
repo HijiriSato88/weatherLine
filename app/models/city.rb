@@ -3,4 +3,3 @@ class City < ApplicationRecord
     has_many :forecasts
     validates :user_id, :city_name, presence: true
 end
-  

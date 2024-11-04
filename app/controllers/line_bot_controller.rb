@@ -43,9 +43,10 @@ class LineBotController < ApplicationController
               date: weather[:date],
               aquired_at: Time.current
             )
-            response_message = Forecast.format_weather_response(weather_forecast)
+            #天気予報用フォーマットに沿ったテキストを返すメソッド。文末の改行を消すと綺麗に表示される。
+            response_message = Forecast.format_weather_response(weather_forecast).strip
           else
-            response_message = "天気情報を取得できませんでした。正しい場所を入力してください。\n
+            response_message = "天気情報を取得できませんでした。正しい場所を入力してください。
                                 例:Tokyo,Saitama,Kawagoe"
           end
           client.reply_message(event['replyToken'], { type: 'text', text: response_message })
