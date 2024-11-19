@@ -100,7 +100,6 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    httpclient (2.8.3)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -204,11 +203,9 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  csv
   debug
   dotenv-rails
   httparty
-  httpclient
   line-bot-api
   mysql2 (~> 0.5)
   puma (>= 5.0)

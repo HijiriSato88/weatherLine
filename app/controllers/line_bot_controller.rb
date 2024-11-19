@@ -1,9 +1,4 @@
-require 'line/bot'
-require 'httparty'
-require 'uri'
-
 class LineBotController < ApplicationController
-
 	def client
 		@client ||= Line::Bot::Client.new { |config|
 			config.channel_secret = ENV['LINE_CHANNEL_SECRET']
@@ -33,7 +28,7 @@ class LineBotController < ApplicationController
 
 					if weather
 						city = user.cities.find_or_create_by(city_name: message)
-							weather_forecast = city.forecasts.create( #weather(Hash)から値を取り出し、DBに追加
+							weather_forecast = city.forecasts.create(
 							temp_max: weather[:temp_max],
 							temp_min: weather[:temp_min],
 							temp_feel: weather[:temp_feel],
