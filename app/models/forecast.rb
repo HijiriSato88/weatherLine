@@ -29,7 +29,7 @@ class Forecast < ApplicationRecord
             description: data["weather"][0]["description"],
             humidity: data["main"]["humidity"],
             rainfall: data['rain'] ? data['rain']['1h'] : 0,
-            date: Time.current
+            date: DateTime.now
           }
         else
           nil
