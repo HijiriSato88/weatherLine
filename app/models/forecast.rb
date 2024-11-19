@@ -12,8 +12,6 @@ class Forecast < ApplicationRecord
     validates :rainfall, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
     validates :date, presence: true
-    
-    validates :aquired_at, presence: true
 
     API_KEY = ENV['WEATHER_APIKEY']
 

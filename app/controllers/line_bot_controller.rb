@@ -41,7 +41,6 @@ class LineBotController < ApplicationController
               description: weather[:description],
               rainfall: weather[:rainfall],
               date: weather[:date],
-              aquired_at: Time.current
             )
             #天気予報用フォーマットに沿ったテキストを返すメソッド。文末の改行を消すと綺麗に表示される。
             response_message = Forecast.format_weather_response(weather_forecast).strip
