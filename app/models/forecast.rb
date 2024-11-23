@@ -23,9 +23,9 @@ class Forecast < ApplicationRecord
 			if response.success?
 				data = response.parsed_response #HTTPartyのparsed_responseは解析されたJSONを返す
 				{
-					temp_max: kelvin_to_celsius(data['main']['temp_max']).round(2),
-					temp_min: kelvin_to_celsius(data['main']['temp_min']).round(2),
-					temp_feel: kelvin_to_celsius(data['main']['feels_like']).round(2),
+					temp_max: (data['main']['temp_max'] - 273.15).round(2),
+					temp_min: (data['main']['temp_min'] - 273.15).round(2),
+					temp_feel: (data['main']['feels_like'] - 273.15).round(2),
 					description: data["weather"][0]["description"],
 					humidity: data["main"]["humidity"],
 					rainfall: data['rain'] ? data['rain']['1h'] : 0,
@@ -37,7 +37,6 @@ class Forecast < ApplicationRecord
 		end
 
 		def format_weather_response(weather_forecast)
-			message =
 			<<~TEXT
 				天気: #{weather_forecast.description}
 				気温: #{weather_forecast.temp_min}°C ~ #{weather_forecast.temp_max}°C
@@ -45,13 +44,6 @@ class Forecast < ApplicationRecord
 				湿度: #{weather_forecast.humidity}%
 				降水量: #{weather_forecast.rainfall}mm
 			TEXT
-			message
-		end
-
-		private
-
-		def kelvin_to_celsius(kelvin)
-			kelvin - 273.15
 		end
 	end
 end
