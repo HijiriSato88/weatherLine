@@ -32,6 +32,7 @@ class Forecast < ApplicationRecord
 					date: DateTime.now
 				}
 			else
+				Rails.logger.error("Weather API request failed: #{response.code} #{response.message}")
 				nil
 			end
 		end
