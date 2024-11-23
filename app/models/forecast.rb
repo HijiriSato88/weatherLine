@@ -1,17 +1,19 @@
 class Forecast < ApplicationRecord
 	belongs_to :city
 
-	validates :city_id, presence: true
+	with_options presence: true do
+		validates :city_id
+		validates :date
+	end
 
-	validates :temp_max, :temp_min, :temp_feel, presence: true, numericality: true
+	with_options presence: true, numericality: true do
+		validates :temp_max, :temp_min, :temp_feel
+		validates :rainfall, numericality: { greater_than_or_equal_to: 0 }
+	end
 
 	validates :humidity, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 
 	validates :description, presence: true, length: { maximum: 255 }
-
-	validates :rainfall, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
-	validates :date, presence: true
 
 	API_KEY = ENV['WEATHER_APIKEY']
 
