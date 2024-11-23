@@ -19,14 +19,13 @@ class LineBotController < ApplicationController
 		events.each do |event|
 			case event
 			when Line::Bot::Event::Message
-				case event.type
-				when Line::Bot::Event::MessageType::Text
+				if event.type == Line::Bot::Event::MessageType::Text
 					line_uid = event['source']['userId']
 					message = event.message['text']
-					user = User.find_or_create_by(line_uid: line_uid)
 					weather = Forecast.get_weather(message)
-
+					
 					if weather
+						user = User.find_or_create_by(line_uid: line_uid)
 						city = user.cities.find_or_create_by(city_name: message)
 							weather_forecast = city.forecasts.create(
 							temp_max: weather[:temp_max],
@@ -43,6 +42,9 @@ class LineBotController < ApplicationController
 						response_message = "天気情報を取得できませんでした。正しい場所を入力してください。
 											例:Tokyo,Saitama,Kawagoe"
 					end
+					client.reply_message(event['replyToken'], { type: 'text', text: response_message })
+				else
+					response_message = "そのメッセージには対応していません！"
 					client.reply_message(event['replyToken'], { type: 'text', text: response_message })
 				end
 			end
