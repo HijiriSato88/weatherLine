@@ -1,24 +1,24 @@
-# README
+# 天気情報を返すLineBot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LINEのMessaging APIを利用して、地名を入力するとその場所の天気情報を返すLineBot
 
-Things you may want to cover:
+## 📚 技術スタック
 
-* Ruby version
+- **Ruby**: 3.3.1  
+- **Rails**: 7.1.3.4  
+- **データベース**: MySQL  
+- **LINE Messaging API**: ユーザーからの入力を受け取り、レスポンスを返す  
+- **Docker**: 開発環境のコンテナ化  
 
-* System dependencies
+---
 
-* Configuration
+## 🌟 主な機能
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- **地名を入力**: ユーザーが地名を入力すると、以下の情報を取得・出力します：
+　- 天気
+  - 気温
+  - 体感温度
+  - 湿度
+  - 降水量  
+- **今後の予定**: 
+  - より詳細で洗練された天気予報の提供を追加予定（３時間ごとのなど）
