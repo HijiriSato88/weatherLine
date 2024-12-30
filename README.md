@@ -20,4 +20,19 @@ LINEのMessaging APIを利用して、地名を入力するとその場所の天
   - 天気
   - 最低気温～最高気温
   - 湿度
-- **３時間前を１件、現在、予報４件の計６件を表示します**
+
+---
+
+## 📱 使用画面の例
+
+- **川越の天気予報を取得**
+  
+  <img src="https://github.com/user-attachments/assets/40e4d3c4-bddb-4212-b2e8-346107a35c33" alt="川越の天気予報を取得" width="300">
+
+- **リクエストのスペルミス**
+  
+  <img src="https://github.com/user-attachments/assets/f47699f7-c284-40b1-8c9f-9bfc366c07cc" alt="リクエストのスペルミス" width="300">
+
+- **テキスト以外のメッセージを送った場合**
+  
+  <img src="https://github.com/user-attachments/assets/43898794-4dda-43a3-bca5-9913bdd79738" alt="テキスト以外のメッセージを送った場合" width="300">
