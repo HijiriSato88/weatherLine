@@ -8,7 +8,7 @@ class User < ApplicationRecord
             if response.success?
                 data = response.parsed_response
                 city_name = data['city']['name']
-                forecasts = data['list'][1..6].map do |item|
+                forecasts = data['list'][2..7].map do |item|
                     {
                         temp_max: (item['main']['temp_max']).round(2),
                         temp_min: (item['main']['temp_min']).round(2),

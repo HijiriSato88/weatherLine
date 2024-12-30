@@ -25,7 +25,6 @@ class LineBotController < ApplicationController
                     weather_forecasts = User.get_weather(message) # 複数の天気データを取得
                     if weather_forecasts
                         user = User.find_or_create_by(line_uid: line_uid)
-                        puts weather_forecasts
                         response_message = User.format_weather_responses(weather_forecasts).strip
                     else
                         response_message = "天気情報を取得できませんでした。正しい場所を入力してください。
