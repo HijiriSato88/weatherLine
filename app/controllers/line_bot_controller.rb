@@ -1,5 +1,6 @@
 class LineBotController < ApplicationController
     def client
+        #@clientが未定義の場合のみ,新しいクライアントを作成
         @client ||= Line::Bot::Client.new { |config|
             config.channel_secret = ENV['LINE_CHANNEL_SECRET']
             config.channel_token = ENV['LINE_CHANNEL_TOKEN']
@@ -21,8 +22,8 @@ class LineBotController < ApplicationController
             when Line::Bot::Event::Message
                 if event.type == Line::Bot::Event::MessageType::Text
                     line_uid = event['source']['userId']
-                    message = event.message['text'].strip
-                    weather_forecasts = User.get_weather(message) # 複数の天気データを取得
+                    client_message = event.message['text'].strip
+                    weather_forecasts = User.get_weather(client_message) #クライアントからの地名メッセージを基に、天気予報を取得
                     if weather_forecasts
                         user = User.find_or_create_by(line_uid: line_uid)
                         response_message = User.format_weather_responses(weather_forecasts).strip
