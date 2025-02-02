@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'webmock/rspec'
 
 RSpec.describe User, type: :model do
   describe 'Validation testing' do
@@ -26,6 +27,7 @@ RSpec.describe User, type: :model do
 
       it 'returns a 200 OK response' do
         response = HTTParty.get(api_url)
+        # puts response.body
         expect(response.code).to eq(200)
       end
     end
