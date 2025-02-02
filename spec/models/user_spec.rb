@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# Userモデルのテスト
 require 'rails_helper'
 require 'webmock/rspec'
 
