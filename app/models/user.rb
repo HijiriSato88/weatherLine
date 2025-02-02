@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     validates :line_uid, presence: true
 
-    API_KEY = ENV['WEATHER_APIKEY']
+    API_KEY = ENV.fetch('WEATHER_APIKEY', nil)
     class << self
         def get_weather(location)
             response = HTTParty.get("http://api.openweathermap.org/data/2.5/forecast?q=#{location},jp&APPID=#{API_KEY}&lang=ja&units=metric")

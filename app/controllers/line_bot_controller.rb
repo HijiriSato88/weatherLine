@@ -2,8 +2,8 @@ class LineBotController < ApplicationController
     def client
         #@clientが未定義の場合のみ,新しいクライアントを作成
         @client ||= Line::Bot::Client.new { |config|
-            config.channel_secret = ENV['LINE_CHANNEL_SECRET']
-            config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+            config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET', nil)
+            config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN', nil)
         }
     end
 
