@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# LineBotController
 class LineBotController < ApplicationController
   def client
     @client ||= Line::Bot::Client.new do |config|
