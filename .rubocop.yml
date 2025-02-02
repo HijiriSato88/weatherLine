@@ -21,3 +21,6 @@ Style/AsciiComments:
 # クラスとモジュールのトップレベルドキュメントがなくても許可
 Style/Documentation:
   Enabled: false
+# 文字数制限
+Layout/LineLength:
+  Max: 160

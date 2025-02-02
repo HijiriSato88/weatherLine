@@ -18,10 +18,7 @@ RSpec.describe User, type: :model do
 
   describe '.get_weather' do
     let(:location) { 'Tokyo' }
-    let(:api_url) do
-      "http://api.openweathermap.org/data/2.5/forecast?q=#{location},jp&APPID=#{ENV.fetch('WEATHER_APIKEY',
-                                                                                          nil)}&lang=ja&units=metric"
-    end
+    let(:api_url) { "http://api.openweathermap.org/data/2.5/forecast?q=#{location},jp&APPID=#{ENV.fetch('WEATHER_APIKEY', nil)}&lang=ja&units=metric" }
     let(:headers) { { 'Content-Type' => 'application/json' } }
     let(:response_body) do
       {
@@ -79,10 +76,7 @@ RSpec.describe User, type: :model do
     context 'when location is invalid' do
       let(:location) { 'Hello' }
 
-      before do
-        WebMock.stub_request(:get, api_url).to_return(status: 404, body: '{"cod":"404","message":"city not found"}',
-                                                      headers: headers)
-      end
+      before { WebMock.stub_request(:get, api_url).to_return(status: 404, body: '{"cod":"404","message":"city not found"}', headers: headers) }
 
       it 'returns nil' do
         response = described_class.get_weather(location)
