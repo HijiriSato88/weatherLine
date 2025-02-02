@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'when response is 404 (bad request)' do
+    context 'when miss send location' do
       let(:location) { 'Hello' }
       let(:status) { 404 }
 
