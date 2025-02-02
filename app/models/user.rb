@@ -13,7 +13,7 @@ class User < ApplicationRecord
                         temp_min: (item['main']['temp_min']).round(2),
                         humidity: (item['main']['humidity']).round(2),
                         description: item['weather'][0]['description'],
-                        dt_txt: item['dt_txt'],
+                        dt_txt: DateTime.parse(item['dt_txt']).strftime('%Y年%m月%d日 %H:%M')
                     }
                 end
                 { city_name: city_name, weather_forecasts: weather_forecasts }

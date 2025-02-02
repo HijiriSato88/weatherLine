@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       let(:response_body) do
         {
           city: { name: location },
-          list: Array.new(6) do |i|
+          list: Array.new(40) do |i| #実際にAPIを叩くと40回分の予測データが取得できるので、ダミーデータも同じ数作成する
             {
               main: { temp_max: 25.567, temp_min: 18.432, humidity: 75 },
               weather: [{ description: '晴れ' }],
@@ -40,13 +40,14 @@ RSpec.describe User, type: :model do
         response = User.get_weather(location)
         expect(response).not_to be_nil
         expect(response[:city_name]).to eq('Tokyo')
+        expect(response[:weather_forecasts].size).to eq(6) #　クライアントに送信する予測データが６つであるか
 
         first_forecast = response[:weather_forecasts].first
         expect(first_forecast[:temp_max]).to eq(25.57)
         expect(first_forecast[:temp_min]).to eq(18.43)
         expect(first_forecast[:humidity]).to eq(75)
         expect(first_forecast[:description]).to eq('晴れ')
-        expect(first_forecast[:dt_txt]).to eq('2025-02-02 12:00:00')
+        expect(first_forecast[:dt_txt]).to eq('2025年02月02日 12:00')
       end
     end
 
@@ -62,3 +63,8 @@ RSpec.describe User, type: :model do
     end
   end
 end
+
+# 1.User.get_weather('Tokyo')
+# 2.HTTParty.get で API を呼ぶが、Webmock によりモックされたデータを受け取る
+# 3.受け取ったモックデータをもとに weather_forecasts を作成
+# 4.定義された値と比較する
