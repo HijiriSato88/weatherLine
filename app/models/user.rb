@@ -27,7 +27,7 @@ class User < ApplicationRecord
             city_name = weather_data[:city_name]
             weather_forecasts = weather_data[:weather_forecasts]
 
-            response_message = "都市: #{city_name}\n\n"
+            response_message = " 現在付近の３時間毎の予報です。\n\n都市: #{city_name}\n\n"
 
             response_message += weather_forecasts.map do |forecast|
                 <<~TEXT
