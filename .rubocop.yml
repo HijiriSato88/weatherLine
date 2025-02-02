@@ -1,5 +1,3 @@
-# inherit_from: .rubocop_todo.yml
-
 require: # 拡張機能をロードするように設定
   - rubocop-rails
   - rubocop-rspec
