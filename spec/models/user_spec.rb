@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'webmock/rspec'
 
@@ -17,7 +19,8 @@ RSpec.describe User, type: :model do
   describe '.get_weather' do
     let(:location) { 'Tokyo' }
     let(:api_url) do
-      "http://api.openweathermap.org/data/2.5/forecast?q=#{location},jp&APPID=#{ENV.fetch('WEATHER_APIKEY', nil)}&lang=ja&units=metric"
+      "http://api.openweathermap.org/data/2.5/forecast?q=#{location},jp&APPID=#{ENV.fetch('WEATHER_APIKEY',
+                                                                                          nil)}&lang=ja&units=metric"
     end
     let(:headers) { { 'Content-Type' => 'application/json' } }
     let(:response_body) do
@@ -27,7 +30,7 @@ RSpec.describe User, type: :model do
           {
             main: { temp_max: 25.567, temp_min: 18.432, humidity: 75 },
             weather: [{ description: '晴れ' }],
-            dt_txt: "2025-02-02 12:00:00"
+            dt_txt: '2025-02-02 12:00:00'
           }
         end
       }.to_json
@@ -77,7 +80,8 @@ RSpec.describe User, type: :model do
       let(:location) { 'Hello' }
 
       before do
-        WebMock.stub_request(:get, api_url).to_return(status: 404, body: '{"cod":"404","message":"city not found"}', headers: headers)
+        WebMock.stub_request(:get, api_url).to_return(status: 404, body: '{"cod":"404","message":"city not found"}',
+                                                      headers: headers)
       end
 
       it 'returns nil' do
