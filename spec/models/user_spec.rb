@@ -14,16 +14,30 @@ RSpec.describe User, type: :model do
   end
 
   describe '.get_weather' do
-    let(:location) { 'Tokyo' }
     let(:api_url) { "http://api.openweathermap.org/data/2.5/forecast?q=#{location},jp&APPID=#{ENV['WEATHER_APIKEY']}&lang=ja&units=metric" }
+    let(:response_body) { '{}' }
+    let(:headers) { { 'Content-Type' => 'application/json' } }
 
-    before do
-        WebMock.stub_request(:get, api_url).to_return(status: 200, body: '{}', headers: { 'Content-Type' => 'application/json' })
+    before { WebMock.stub_request(:get, api_url).to_return(status: status, body: response_body, headers: headers) }
+
+    context 'when response is 200 OK' do
+      let(:location) { 'Tokyo' }
+      let(:status) { 200 }
+
+      it 'returns a 200 OK response' do
+        response = HTTParty.get(api_url)
+        expect(response.code).to eq(200)
+      end
     end
 
-    it 'APIリクエストが200 OKを返すこと' do
-      response = HTTParty.get(api_url)
-      expect(response.code).to eq(200)
+    context 'when response is 404 (bad request)' do
+      let(:location) { 'Hello' }
+      let(:status) { 404 }
+
+      it 'returns a 404 response' do
+        response = HTTParty.get(api_url)
+        expect(response.code).to eq(404)
+      end
     end
   end
 end
