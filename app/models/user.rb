@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_one :reminder, dependent: :destroy
+  
   validates :line_uid, presence: true
 
   API_KEY = ENV.fetch('WEATHER_APIKEY', nil)
