@@ -40,6 +40,9 @@ gem 'dotenv-rails'
 # アプリケーション内でHTTPリクエストを投げたい場合に使うクラス
 gem 'httparty'
 
+# 定期実行
+gem 'whenever', require: false
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
