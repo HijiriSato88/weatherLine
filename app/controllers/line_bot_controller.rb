@@ -45,7 +45,7 @@ class LineBotController < ApplicationController
       User.find_or_create_by(line_uid: line_uid)
       User.format_weather_responses(weather_forecasts).strip
     else
-      "天気情報を取得できませんでした。正しい場所を入力してください。\n例:Tokyo,Saitama,Kawagoe"
+      "天気情報を取得できませんでした。正しい場所を入力してね。\n例:Tokyo,Saitama,Kawagoe"
     end
   end
 end
