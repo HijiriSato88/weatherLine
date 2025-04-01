@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   has_one :reminder, dependent: :destroy
-  
+
   validates :line_uid, presence: true
 
   API_KEY = ENV.fetch('WEATHER_APIKEY', nil)
@@ -50,7 +50,7 @@ class User < ApplicationRecord
       <<~TEXT
         日時: #{forecast[:dt_txt]}
         天気: #{forecast[:description]}
-        気温: #{forecast[:temp_min]}°C ~ #{forecast[:temp_max]}°C
+        気温: #{forecast[:temp_max]}°C
         湿度: #{forecast[:humidity]}%
       TEXT
     end
